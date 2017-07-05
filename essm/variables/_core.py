@@ -98,7 +98,7 @@ class VariableMeta(type):
     def function(cls):
         """Return a symbolic function."""
         from sage.symbolic.function_factory import function_factory
-        return function_factory(cls.name + '_function')
+        return function_factory(cls.name)
 
 
 class Variable(object):
