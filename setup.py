@@ -59,7 +59,7 @@ setup_requires = [
 ]
 
 install_requires = [
-    'sympy>=1.1rc1',
+    'sympy>=1.0',
     'six>=1.10.0',
 ]
 
