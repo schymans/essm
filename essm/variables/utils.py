@@ -21,6 +21,7 @@
 
 from sympy import Eq, preorder_traversal
 from sympy.core.expr import Expr
+from sympy.physics.units import convert_to
 
 from essm.equations._core import BaseEquation
 from essm.variables._core import BaseVariable
@@ -66,3 +67,10 @@ def replace_variables(expr, variables=None):
         return Eq(expr.lhs.xreplace(symbols).xreplace(variables),
                   expr.rhs.xreplace(symbols).xreplace(variables))
     return expr.xreplace(symbols).xreplace(variables)
+
+
+def strip_unit(var1, value):
+    """Converts value to standard unit of var1 and returns numerical value.
+    Useful for storing values e.g. in numpy arrays."""
+    unit = var1.definition.unit
+    return convert_to(value, unit)/unit

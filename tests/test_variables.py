@@ -5,6 +5,8 @@ import pytest
 
 from essm.variables import Variable
 from essm.variables.units import derive_unit, joule, kilogram, meter, second
+from essm.variables.utils import strip_unit
+from sympy.physics.units import millimeter
 
 
 class demo_variable(Variable):
@@ -91,3 +93,9 @@ def test_remove_variable_from_registry():
 
     with pytest.raises(KeyError):
         del Variable[removable]
+
+
+def test_strip_unit():
+    """Check if strip_unit converts value*unit to base units
+    and returns value."""
+    assert strip_unit(demo_variable, 100*millimeter) == 0.1
